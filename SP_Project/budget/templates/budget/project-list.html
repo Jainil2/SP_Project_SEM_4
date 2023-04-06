@@ -1,0 +1,80 @@
+{% extends 'budget/base.html' %}
+{% block content %}
+
+
+
+<div class="container">
+
+  <h1 class="text-center j">My Expenses</h1>
+  <hr>
+
+<!--  -->
+
+  <div class="container text-center">
+    <div class="row">
+       {% for project in project_list %}
+      <div class="col-md-4">
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+          <div class="card-header bg-transparent border-success">{{ project.name }}
+          </div>
+            <div class="card-body text-success">
+              <h5 class="card-title">
+                {% for category in category_list %}
+                  <div>
+                    <h5>{{ category.name }}</h5>
+                  </div>
+                {% endfor %}
+              </h5>
+            </div>
+            <div class="card-footer bg-transparent border-success">
+              <a class="btn btn-primary" href="{% url 'detail' project.slug %}" role="button">Link</a>
+            </div>
+        </div>
+      </div>
+      {% empty %}
+    <div class="noproject-wrapper center">
+      <h3 class="grey-text">Sorry, you don't have any projects, yet.</h3>
+      <a href="{% url 'add' %}" class="btn-large grey">
+        <i class="material-icons white-text left">add_circle</i>
+        <span class="bold">Add Projects</span>
+      </a>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+<!--  -->
+
+<!--  <div class="row">-->
+<!--    {% for project in project_list %}-->
+<!--    <div class="col s12 md6 xl3">-->
+<!--      <div class="card-panel">-->
+<!--        <h5>{{ project.name }}</h5>-->
+<!--        <a href="{% url 'detail' project.slug %}" class="btn">Visit</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    {% empty %}-->
+<!--    <div class="noproject-wrapper center">-->
+<!--      <h3 class="grey-text">Sorry, you don't have any projects, yet.</h3>-->
+<!--      <a href="{% url 'add' %}" class="btn-large grey">-->
+<!--        <i class="material-icons white-text left">add_circle</i>-->
+<!--        <span class="bold">Add Projects</span>-->
+<!--      </a>-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--  </div>-->
+
+
+</div>
+
+<script>
+  var elem = document.querySelector('.modal')
+var instance = M.Modal.init(elem)
+
+var elem = document.querySelector('select')
+var instance = M.FormSelect.init(elem)
+
+</script>
+
+{% endblock %}
